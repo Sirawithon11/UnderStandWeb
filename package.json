@@ -19,7 +19,8 @@
   "homepage": "https://github.com/2110503CEDT67/a-4-Sirawithon11#readme",
   "dependencies": {
     "dotenv": "^16.4.7",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "mongoose": "^8.10.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.9"
