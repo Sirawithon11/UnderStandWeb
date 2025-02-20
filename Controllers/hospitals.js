@@ -34,6 +34,7 @@ exports.postHospital = async (req,res,next) =>{
     const hospital = await Hospital.create(req.body) ;
     res.status(201).json({success:true , data : hospital}) ;
     
+    
 }
 
 // @desc Update single hospitals

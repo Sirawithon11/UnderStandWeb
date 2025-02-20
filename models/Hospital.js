@@ -1,3 +1,6 @@
+//สร้างเพื่อกำหนดโครงสร้าง หรือข้อกำหนด ของข้อมูลที่เราจะเก็บในฐานข้อมูล เพื่อเพิ่มความถูกต้องของข้อมูลก่อนที่เราจะนำไปเก็บในฐานข้อมูล 
+
+
 const mongoose = require('mongoose') ;
 
 const HospitalSchema = new mongoose.Schema({
@@ -35,3 +38,7 @@ const HospitalSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('Hospital',HospitalSchema) ;
+// คำสั่งนี้สำคัญมาก
+// Hospital เป็นการตั้งชื่อให้ collection หรือ ค้นหา collection ที่มีอยู่แล้ว ใน database โดยจะเปลี่ยนชื่อที่เรากำหนดเป็น plural และเปลี่ยนเป็นตัวพิมพ์เล็ก
+//ใน กรณี นี้ mongoose จะใช้เชื่อม โยงชื่อ Model ='Hospital' กับ hospitals ของ collection ใน database
+//ส่วน HospitalSchema เป็น ตัวแปรที่เก็บข้อ Schema จริงๆ
