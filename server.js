@@ -3,15 +3,16 @@ const dotenv = require("dotenv") ; // นำเข้า สิ่งที่ m
 const connectDB = require('./config/db'); // นำเข้า สิ่งที่ module.export จากการ path ข้างต้น มาไว้ในตัวแปร
 dotenv.config({path:"./config/config.env"}) ; // set ค่า dot env
 const hospitals =  require("./routes/hospitals") ; // นำเข้า สิ่งที่ module.export จากการ path ข้างต้น มาไว้ในตัวแปร
-
+const auth = require('./routes/auth') ;
+const cookieParser = require('cookie-parser');
 connectDB(); // แสดงว่าสิ่งที่ ได้รับจากการ require เป็น  function และ คำสั่งนี้แสดงถึงการเรียกฟังชั่นจากอีกไฟล์ ซึ่งเป็นการเชื่อมต่อ db
 
 const app = express() ; // express() เป็นการสร้าง Application express ซึ่งกำหนดให้ app
-
 app.use(express.json()); // ทุกอย่างที่เราเขียน จะเป็น js object แต่ข้อมูลที่ส่งไปมาจะเป็น json
 //แต่ข้อมูล ใน mongo จะมี moongoose แปลงเป็น js object ก่อนส่งมาที่ server ยุแล้ว แต่ข้อมูลที่มาจาก client ยังไม่มี
 //ดังนั้น ต้อง ใส่ app.use(express.json()); ก่อนใช้ req.body ซึ่งรับข้อมูลมาจาก client หรือ Postman
-
+app.use(cookieParser()) ;
+app.use('/api/v1/auth',auth) ;
 app.use('/api/v1/hospitals',hospitals) ; //เป็น path ที่เราออกแบบมาเอง อยู่ในserver portทีกำหนด เพื่อออกแบบโครงสร้างการเข้าถึงข้อมูล
 
 

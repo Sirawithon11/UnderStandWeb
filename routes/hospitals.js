@@ -1,10 +1,10 @@
 const express = require('express') ;
 const router = express.Router() ; // สร้าง router object
 const {getHospital,getHospitals,postHospital,putHospital,deleteHospital} =require('../Controllers/hospitals')
-
+const {protect,authorize} = require('../middleware/auth');
 //เรียก function จากการ Controller มาทำงานที่นี่
-router.route('/').get(getHospitals).post(postHospital);
-router.route('/:id').get(getHospital).put(putHospital).delete(deleteHospital);
+router.route('/').get(getHospitals).post(protect,authorize('admin'),postHospital);
+router.route('/:id').get(getHospital).put(protect,authorize('admin'),putHospital).delete(protect,authorize('admin'),deleteHospital);
 
 
 module.exports = router ; 
